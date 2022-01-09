@@ -12,6 +12,7 @@ exports.register = async (req, res, next) => {
     const body = req.body;
     body.activationKey = activationKey;
     const user = new User(body);
+    user.active = true;
     const savedUser = await user.save();
     res.status(httpStatus.CREATED);
     res.send(savedUser.transform());
